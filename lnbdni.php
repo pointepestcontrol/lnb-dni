@@ -2,7 +2,7 @@
 /*
 Plugin Name: LeadsNearby Dynamic Number Inserter
 Plugin URI: http://leadsnearby.com
-Description: Provides Dynamic Phone Number Functionality for Companies that use Service Titan Call Tracking
+Description: Provides Dynamic Phone Number Functionality for Various Call Tracking Solutions
 Version: 1.0.0
 Author: Leads Nearby(Brian West)
 Author URI: http://leadsnearby.com
