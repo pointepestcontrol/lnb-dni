@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: LeadsNearby Dynamic Number Inserter
+Plugin Name: LeadsNearby DNI
 Plugin URI: http://leadsnearby.com
 Description: Provides Dynamic Phone Number Functionality for Various Call Tracking Solutions
 Version: 1.0.0
-Author: Leads Nearby(Brian West)
+Author: LeadsNearby
 Author URI: http://leadsnearby.com
 License: GPLv2
 */
