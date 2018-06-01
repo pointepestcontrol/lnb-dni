@@ -21,7 +21,7 @@ class LnbStDni {
 	
 	public function add_menu_entry() {
 		if (current_user_can('administrator')) {
-			add_options_page('LeadsNearby / Service Titan DNI Settings', 'LNB-ST-DNI', 'administrator', 'lnb-st-dni', array($this, 'menu_page'));
+			add_options_page('LeadsNearby / Service Titan DNI Settings', 'LNB-DNI', 'administrator', 'lnb-st-dni', array($this, 'menu_page'));
 		}
 	}
 	
