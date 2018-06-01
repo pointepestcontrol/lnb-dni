@@ -11,7 +11,7 @@ License: GPLv2
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class LnbStDni {
+class LnbStDni { 
 	
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu_entry' ) );
