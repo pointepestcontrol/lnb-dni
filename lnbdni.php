@@ -21,7 +21,11 @@ class LnbDni {
 	
 	public function add_menu_entry() {
 		if (current_user_can('administrator')) {
+<<<<<<< HEAD
 			add_options_page('LeadsNearby / Service Titan DNI Settings', 'LNB-DNI', 'administrator', 'lnb-dni', array($this, 'menu_page'));
+=======
+			add_options_page('LeadsNearby / Service Titan DNI Settings', 'LNB-DNI', 'administrator', 'lnb-st-dni', array($this, 'menu_page'));
+>>>>>>> 14989bf562cb65dea579d88ee3059089e65ff4d8
 		}
 	}
 	
@@ -130,4 +134,8 @@ class LnbDni {
 	
 }
 
+<<<<<<< HEAD
 $plugin = new LnbDni();
+=======
+$plugin = new LnbStDni();
+>>>>>>> 14989bf562cb65dea579d88ee3059089e65ff4d8
