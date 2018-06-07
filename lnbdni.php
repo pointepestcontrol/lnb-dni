@@ -1,17 +1,17 @@
 <?php
 /*
-Plugin Name: LeadsNearby Dynamic Number Inserter
+Plugin Name: LeadsNearby DNI
 Plugin URI: http://leadsnearby.com
-Description: Provides Dynamic Phone Number Functionality for Companies that use Service Titan Call Tracking
+Description: Provides Dynamic Phone Number Functionality for Various Call Tracking Solutions
 Version: 1.0.0
-Author: Leads Nearby(Brian West)
+Author: LeadsNearby
 Author URI: http://leadsnearby.com
 License: GPLv2
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class LnbStDni { 
+class LnbDni {
 	
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu_entry' ) );
@@ -21,7 +21,7 @@ class LnbStDni {
 	
 	public function add_menu_entry() {
 		if (current_user_can('administrator')) {
-			add_options_page('LeadsNearby / Service Titan DNI Settings', 'LNB-ST-DNI', 'administrator', 'lnb-st-dni', array($this, 'menu_page'));
+			add_options_page('LeadsNearby / Service Titan DNI Settings', 'LNB-DNI', 'administrator', 'lnb-dni', array($this, 'menu_page'));
 		}
 	}
 	
@@ -54,7 +54,7 @@ class LnbStDni {
             $dup = false;
             
             foreach ($_POST['option'] as $post_settings) {
-                if(in_array($post_settings['source-select'], $temp_setting_keys)) {
+                if(in_array($post_settings['source-select'], $temp_setting_keys) || @in_array($post_settings['customer-referrer'], $temp_setting_keys )) {
                     $dup = true;
                 }
                 $temp_setting_keys[] = $post_settings['source-select'];
@@ -79,6 +79,7 @@ class LnbStDni {
 			<div class="rowLnbSettingContainer">
 			<?php foreach ($lnbDniSettings as $i => $setting) { ?>
 			<div class="rowLnbSetting sr<?php echo $i ?>" data-index="<?php echo $i ?>">
+                <div style="cursor: pointer;" class="dni-delete"><img style="width: 70%;" src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/Close_Icon_Circle-512.png'; ?>"></div>
 				<div class="lnbSetting setting-left" >
 					<input required="" class="lnbSetting__field lnbSetting__field--text" name="option[<?php echo $i ?>][phone-number]" type="tel" maxlength="14" value="<?php echo $setting['phone-number'] ?>">
 					<label class="lnbSetting__label">Tracking Number</label>
@@ -86,20 +87,28 @@ class LnbStDni {
 				</div>
 				<div class="lnbSetting setting-right">
 					<select form="dni-form" class="lnbSetting__select lnbSetting__select--text" name="option[<?php echo $i ?>][source-select]" value="">
-						<option value="google.com" <?php if ($setting['source-select'] == "google.com") echo 'selected'; ?>>Google Organic</option>
+						<option value="google.com" <?php if ($setting['source-select'] == "google.com") echo 'selected'; ?>><i class="fab fa-google"></i>Google Organic</option>
 						<option value="bing.com" <?php if ($setting['source-select'] == "bing.com") echo 'selected'; ?>>Bing Organic</option>
-						<option value="direct" <?php if ($setting['source-select'] == "direct") echo 'selected'; ?>>Direct/Other</option>
-						<option value="ppc" <?php if ($setting['source-select'] == "ppc") echo 'selected'; ?>>PPC</option>
-						<option value="ma" <?php if ($setting['source-select'] == "ma") echo 'selected'; ?>>Marketing Automation</option>
-						<option value="facebook.com"<?php if ($setting['source-select'] == "facebook.com") echo 'selected'; ?>>Facebook</option>
-						<option value="yelp.com"<?php if ($setting['source-select'] == "yelp.com") echo 'selected'; ?>>Yelp</option>
-					<select>
+						<option value="direct" <?php if ($setting['source-select'] == "direct") echo 'selected'; ?>><i class="fas fa-keyboard"></i>Direct/Other</option>
+						<option value="ppc" <?php if ($setting['source-select'] == "ppc") echo 'selected'; ?>><i class="fab fa-google"></i>Google Adwords</option>
+						<option value="ma" <?php if ($setting['source-select'] == "ma") echo 'selected'; ?>><i class="fas fa-envelope"></i>Marketing Automation</option>
+						<option value="facebook.com"<?php if ($setting['source-select'] == "facebook.com") echo 'selected'; ?>><i class="fab fa-facebook"></i>Facebook</option>
+						<option value="yelp.com"<?php if ($setting['source-select'] == "yelp.com") echo 'selected'; ?>><i class="fab fa-yelp"></i>Yelp</option>
+                        <option class="dni-custom-select" value="custom"<?php if ($setting['source-select'] == "custom") echo 'selected'; ?>>Custom Referrer</option>
+                    </select>
+                </div>
+                 
+                 <?php if(isset($setting['custom-referrer'])) { ?>
+                 <div class="lnbSetting setting-custom-row" >
+					<input required="" class="lnbSetting__field lnbSetting__field--text" name="option[<?php echo $i ?>][custom-referrer]" type="tel" maxlength="30" value="<?php echo $setting['custom-referrer'] ?>">
+					<label class="lnbSetting__label">Custom Referrer</label>
+					<span class="lnbSetting__highlight"></span>
 				</div>
-				<div style="cursor: pointer;" class="dni-delete"><img style="width: 70%;" src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/Close_Icon_Circle-512.png'; ?>"></div>
+                <?php } ?>
 			</div>
 			<?php } ?>
 			</div>
-			
+            
 			<input id="save-settings" class="button button-primary" type="submit" name="submit" value="Save Options">
 			</form>
 			<button style="margin-top: 15px;" class="add-row button button-primary">Add New Row</button>
@@ -121,4 +130,4 @@ class LnbStDni {
 	
 }
 
-$plugin = new LnbStDni();
+$plugin = new LnbDni();

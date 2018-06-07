@@ -4,7 +4,7 @@
 
 .rowLnbSetting {
 	display: grid;
-    grid-template-columns: 350px 350px 50px;
+    grid-template-columns: 50px 350px 350px 350px;
 }
 
 .lnbSetting {
@@ -40,6 +40,10 @@
 .lnbSetting__select {
     display: block;
     width: 100%;
+}
+
+.custom-referrer-field {
+    background-color: #fff9f0 !important;
 }
 
 .wp-admin select {

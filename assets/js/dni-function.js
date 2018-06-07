@@ -1,6 +1,7 @@
 window.addEventListener('load', function () {
     var dniCookie = "";
     var cookieIsSet = "";
+    //console.log(dniData);
 
     // Check to see if the Cookie is already set.
     if (document.cookie) {
@@ -24,30 +25,21 @@ window.addEventListener('load', function () {
             if (attributes[1] == 'Marketing Automation' || attributes[1] == 'Monthly Newsletter') {
                 setCookie('dniCookie', 'ma', 3);
             }
-            if (attributes[0] == 'clid') {
+            if (attributes[0] == 'gclid') {
                 setCookie('dniCookie', 'ppc', 3);
             }
         });
 
     } else if (cookieIsSet !== true) {
         // Match based on Document Referrer if no URL Params and Cookie is not already set
+
+        var dniReferrer = document.referrer;
         switch (document.referrer) {
         case "":
             setCookie('dniCookie', 'direct', 30);
             break;
-        case 'https://www.google.com/':
-            setCookie('dniCookie', 'google.com', 30);
-            break;
-        case 'https://www.bing.com':
-            setCookie('dniCookie', 'bing.com', 30);
-            break;
-        case 'https://www.yelp.com':
-            setCookie('dniCookie', 'yelp.com', 30);
-            break;
-        case 'https://www.facebook.com':
-            setCookie('dniCookie', 'facebook.com', 30);
-            break;
         default:
+            setCookie('dniCookie', dniReferrer, 30);
             break;
         }
     }
@@ -70,6 +62,9 @@ window.addEventListener('load', function () {
     if (Object.keys(dniData).length > 0) {
         Object.entries(dniData).forEach(function (data) {
             if (dniCookie === data[1]['source-select']) {
+                numberMatch = data[1]['phone-number'];
+                document.querySelector('.phone-num').outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
+            } else if (data[1]['source-select'] === 'custom' && data[1]['custom-referrer'].replace(/\/?(\?|#|$)/, '/$1')) {
                 numberMatch = data[1]['phone-number'];
                 document.querySelector('.phone-num').outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
             }
