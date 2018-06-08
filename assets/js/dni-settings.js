@@ -9,14 +9,20 @@ window.addEventListener('load', function () {
         var dniForm = document.querySelector('.rowLnbSettingContainer');
         var dniFormRows = document.querySelectorAll('.rowLnbSetting');
         var indexArray = [];
-
-        dniFormRows.forEach(function (formRow) {
-            indexArray.push(parseInt(formRow.getAttribute('data-index')));
-        });
-
-        dniFormIndex = Math.max(...indexArray);
+        if (dniFormRows) {
+            dniFormRows.forEach(function (formRow) {
+                indexArray.push(parseInt(formRow.getAttribute('data-index')));
+            });
+        }
+       // dniFormIndex = isNaN(Math.max(...indexArray)) ? 1 : Math.max(...indexArray);
+        
+        if (isNaN(Math.max(...indexArray))) {
+            dniFormIndex = 0;
+        } else {
+            dniFormIndex = Math.max(...indexArray)
+        }
+        
         dniFormIndex++;
-        console.log(dniFormIndex);
         var rowNode = document.createElement('div');
 
         rowNode.className = 'rowLnbSetting';
@@ -45,11 +51,16 @@ window.addEventListener('load', function () {
         var dniForm = document.querySelector('.rowLnbSettingContainer');
         dniForm.appendChild(rowNode);
 
-        
+       
         // Bind the Custom Referrer Field Function for New Rows
         var currentRow = rowNode.querySelector('.lnbSetting__select');
         currentRow.addEventListener('change', function () {
-            dniAddCustomField(currentRow);
+            if (currentRow.options[currentRow.selectedIndex].value == 'custom' && !currentRow.querySelector('.setting-custom')) {
+                dniAddCustomField(currentRow);
+           } else if (currentRow.parentNode.parentNode.querySelector('.setting-custom-row')) {
+                currentRow.parentNode.parentNode.querySelector('.setting-custom-row').remove();
+                return;
+           } 
         })
     });
 
@@ -62,13 +73,11 @@ window.addEventListener('load', function () {
         });
     });
 
-
-
     
     // Function to Add Custom Referrer Field
-    var dniAddCustomField = function (dniSelect, ) {
+    var dniAddCustomField = function (dniSelect) {
         dniCustomInputField = document.createElement('div');
-        console.log(dniFormIndex);
+        //console.log(dniFormIndex);
         var dniFormIndex = dniSelect.parentNode.parentNode.getAttribute('data-index');
         dniCustomInputField.innerHTML =
             `<div class="lnbSetting setting-custom-row">

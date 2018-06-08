@@ -21,9 +21,9 @@ class LnbDni {
 	
 	public function add_menu_entry() {
 		if (current_user_can('administrator')) {
-			add_options_page('LeadsNearby / Service Titan DNI Settings', 'LNB-DNI', 'administrator', 'lnb-dni', array($this, 'menu_page'));
+			add_options_page('LeadsNearby DNI Settings', 'LNB-DNI', 'administrator', 'lnb-dni', array($this, 'menu_page'));
 		}
-	}
+	} 
 	
 	public function register_backend_scripts () {
 		if (current_user_can('administrator')) {
@@ -53,10 +53,10 @@ class LnbDni {
             $temp_setting_keys = array();
             
             foreach ($_POST['option'] as $post_settings) {
-                
                 if(in_array($post_settings['source-select'], $temp_setting_keys) || @in_array($post_settings['customer-referrer'], $temp_setting_keys )) {
                     $dup = true;
                 }
+                
                 $temp_setting_keys[] = $post_settings['source-select'];
             }
             
@@ -66,25 +66,25 @@ class LnbDni {
             // } else {
                 // echo '<h3 style="color: red">YOU HAVE A DUPLICATE SOURCE ENTRY - PLEASE RETRY</h3>';
             // }
-		}
+		} 
 
 		$lnbDniSettings = get_option('lnb-dni-settings');
-		
-		?>
-
+       
+        ?>
+        
 		<div class="lnbSettingsPage">
-			<br /><h1 class="lnbSettingsPage__title">LeadsNearby / Service Titan - DNI Settings</h1>
+			<br /><h1 class="lnbSettingsPage__title">LeadsNearby - DNI Settings</h1>
 			<p>Enter the tracking number and select the visitor source that should cause it to be displayed.  The phone number will be displayed on the site the way it is formatted here</p>
             <i><b></b></i><br />
 			<form id="dni-form" method="post" class="lnbSettings" method="post" action="">
 			<div class="rowLnbSettingContainer">
-            <div class="lnbSettingHeaderRow rowLnbSetting">
+            <div class="lnbSettingHeaderRow rowLnbSetting" data-index="0">
                 <div></div>
                 <div><h3>Tracking Number</h3></div>
                 <div><h3>Source</h3></div>
-                <div> <h3>Custom Source Input </h3></div>
+                <div><h3>Custom Source Input </h3></div>
             </div>
-			<?php foreach ($lnbDniSettings as $i => $setting) { ?>
+			<?php if(is_array($lnbDniSettings)) { foreach ($lnbDniSettings as $i => $setting) { ?>
 			<div class="rowLnbSetting sr<?php echo $i ?>" data-index="<?php echo $i ?>">
                 <div style="cursor: pointer;" class="dni-delete"><img style="width: 70%;" src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/Close_Icon_Circle-512.png'; ?>"></div>
 				<div class="lnbSetting setting-left" >
@@ -114,20 +114,17 @@ class LnbDni {
                 <?php } ?>
 			</div>
 			<?php } ?>
+            <?php } ?>
 			</div>
-            
-			
 			</form>
-            <div style="margin-top: 20px" class="form-buttons">
-                <input form="dni-form" id="save-settings" class="button button-primary" type="submit" name="submit" value="Save Options">
-                <button class="add-row button button-primary">Add New Row</button>
-            </div>
-		</div>
-		
-		<?php
-	
-	}
-	
+           
+         <div style="margin-top: 20px" class="form-buttons">
+            <input form="dni-form" id="save-settings" class="button button-primary" type="submit" name="submit" value="Save Options">
+            <button class="add-row button button-primary">Add New Number</button>
+        </div>
+         </div>
+    <?php } 
+    
 	private function dni_get_url_params() {
 		if (isset($_GET)) {
 			return $_GET;
