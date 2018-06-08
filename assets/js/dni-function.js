@@ -35,12 +35,12 @@ window.addEventListener('load', function () {
 
         var dniReferrer = document.referrer;
         switch (document.referrer) {
-        case "":
-            setCookie('dniCookie', 'direct', 30);
-            break;
-        default:
-            setCookie('dniCookie', dniReferrer, 30);
-            break;
+            case "":
+                setCookie('dniCookie', 'direct', 30);
+                break;
+            default:
+                setCookie('dniCookie', dniReferrer, 30);
+                break;
         }
     }
 
@@ -64,7 +64,7 @@ window.addEventListener('load', function () {
             if (dniCookie === data[1]['source-select']) {
                 numberMatch = data[1]['phone-number'];
                 document.querySelector('.phone-num').outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
-            } else if (data[1]['source-select'] === 'custom' && data[1]['custom-referrer'].replace(/\/?(\?|#|$)/, '/$1')) {
+            } else if (data[1]['source-select'] === 'custom' && data[1]['custom-referrer'].replace(/\/?(\?|#|$)/, '/$1') === dniCookie) {
                 numberMatch = data[1]['phone-number'];
                 document.querySelector('.phone-num').outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
             }

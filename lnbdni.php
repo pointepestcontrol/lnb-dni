@@ -51,20 +51,21 @@ class LnbDni {
 
 		if (isset($_POST['option'])) {
             $temp_setting_keys = array();
-            $dup = false;
             
             foreach ($_POST['option'] as $post_settings) {
+                
                 if(in_array($post_settings['source-select'], $temp_setting_keys) || @in_array($post_settings['customer-referrer'], $temp_setting_keys )) {
                     $dup = true;
                 }
                 $temp_setting_keys[] = $post_settings['source-select'];
             }
             
-            if ($dup === false) {
-                update_option('lnb-dni-settings', $_POST['option']);
-            } else {
-                echo '<h3 style="color: red">YOU HAVE A DUPLICATE SOURCE ENTRY - PLEASE RETRY</h3>';
-            }
+            update_option('lnb-dni-settings', $_POST['option']);
+            // if ($dup === false) {
+                
+            // } else {
+                // echo '<h3 style="color: red">YOU HAVE A DUPLICATE SOURCE ENTRY - PLEASE RETRY</h3>';
+            // }
 		}
 
 		$lnbDniSettings = get_option('lnb-dni-settings');
@@ -74,9 +75,15 @@ class LnbDni {
 		<div class="lnbSettingsPage">
 			<br /><h1 class="lnbSettingsPage__title">LeadsNearby / Service Titan - DNI Settings</h1>
 			<p>Enter the tracking number and select the visitor source that should cause it to be displayed.  The phone number will be displayed on the site the way it is formatted here</p>
-            <i><b></b></i><br /><br />
+            <i><b></b></i><br />
 			<form id="dni-form" method="post" class="lnbSettings" method="post" action="">
 			<div class="rowLnbSettingContainer">
+            <div class="lnbSettingHeaderRow rowLnbSetting">
+                <div></div>
+                <div><h3>Tracking Number</h3></div>
+                <div><h3>Source</h3></div>
+                <div> <h3>Custom Source Input </h3></div>
+            </div>
 			<?php foreach ($lnbDniSettings as $i => $setting) { ?>
 			<div class="rowLnbSetting sr<?php echo $i ?>" data-index="<?php echo $i ?>">
                 <div style="cursor: pointer;" class="dni-delete"><img style="width: 70%;" src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/Close_Icon_Circle-512.png'; ?>"></div>
@@ -87,14 +94,14 @@ class LnbDni {
 				</div>
 				<div class="lnbSetting setting-right">
 					<select form="dni-form" class="lnbSetting__select lnbSetting__select--text" name="option[<?php echo $i ?>][source-select]" value="">
-						<option value="google.com" <?php if ($setting['source-select'] == "google.com") echo 'selected'; ?>><i class="fab fa-google"></i>Google Organic</option>
-						<option value="bing.com" <?php if ($setting['source-select'] == "bing.com") echo 'selected'; ?>>Bing Organic</option>
+						<option value="https://www.google.com/" <?php if ($setting['source-select'] == "https://www.google.com/") echo 'selected'; ?>><i class="fab fa-google"></i>Google Organic</option>
+						<option value="https://www.bing.com/" <?php if ($setting['source-select'] == "https://www.bing.com/") echo 'selected'; ?>>Bing Organic</option>
 						<option value="direct" <?php if ($setting['source-select'] == "direct") echo 'selected'; ?>><i class="fas fa-keyboard"></i>Direct/Other</option>
 						<option value="ppc" <?php if ($setting['source-select'] == "ppc") echo 'selected'; ?>><i class="fab fa-google"></i>Google Adwords</option>
 						<option value="ma" <?php if ($setting['source-select'] == "ma") echo 'selected'; ?>><i class="fas fa-envelope"></i>Marketing Automation</option>
-						<option value="facebook.com"<?php if ($setting['source-select'] == "facebook.com") echo 'selected'; ?>><i class="fab fa-facebook"></i>Facebook</option>
-						<option value="yelp.com"<?php if ($setting['source-select'] == "yelp.com") echo 'selected'; ?>><i class="fab fa-yelp"></i>Yelp</option>
-                        <option class="dni-custom-select" value="custom"<?php if ($setting['source-select'] == "custom") echo 'selected'; ?>>Custom Referrer</option>
+						<option value="https://www.facebook.com/"<?php if ($setting['source-select'] == "https://www.facebook.com/") echo 'selected'; ?>><i class="fab fa-facebook"></i>Facebook</option>
+						<option value="https://www.yelp.com/"<?php if ($setting['source-select'] == "https://www.yelp.com/") echo 'selected'; ?>><i class="fab fa-yelp"></i>Yelp</option>
+                        <option class="dni-custom-select" value="custom"<?php if ($setting['source-select'] == "custom") echo 'selected'; ?>>Custom</option>
                     </select>
                 </div>
                  
@@ -109,9 +116,12 @@ class LnbDni {
 			<?php } ?>
 			</div>
             
-			<input id="save-settings" class="button button-primary" type="submit" name="submit" value="Save Options">
+			
 			</form>
-			<button style="margin-top: 15px;" class="add-row button button-primary">Add New Row</button>
+            <div style="margin-top: 20px" class="form-buttons">
+                <input form="dni-form" id="save-settings" class="button button-primary" type="submit" name="submit" value="Save Options">
+                <button class="add-row button button-primary">Add New Row</button>
+            </div>
 		</div>
 		
 		<?php

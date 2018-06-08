@@ -36,7 +36,7 @@ window.addEventListener('load', function () {
 					<option value="ma">Marketing Automation</option>
 					<option value="https://www.facebook.com">Facebook</option>
 					<option value="https://www.yelp.com">Yelp</option>
-                            <option class="dni-custom-select" value="custom">Custom Referrer</option>
+                            <option class="dni-custom-select" value="custom">Custom</option>
 				<select>
 			</div>`;
 
