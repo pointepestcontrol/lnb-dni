@@ -23,10 +23,10 @@ window.addEventListener('load', function () {
 
         dniParamEntries.forEach(function (attributes) {
             if (attributes[1] == 'Marketing Automation' || attributes[1] == 'Monthly Newsletter') {
-                setCookie('dniCookie', 'ma', 3);
+                setCookie('dniCookie', 'ma', 30);
             }
             if (attributes[0] == 'gclid') {
-                setCookie('dniCookie', 'ppc', 3);
+                setCookie('dniCookie', 'ppc', 30);
             }
         });
 
