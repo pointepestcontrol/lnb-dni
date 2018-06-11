@@ -11,7 +11,7 @@ Provides Dynamic Insertion functionality on a Wordpress website, using call trac
 ## How to Use
 ***
 
-LeadsNearby DNI works by setting a cookie based on URL Parameters or document.referrer and matching that to a predefined list of sources or any custom source.  The cookie is currently set for 3 days before it can be reset to a new source.
+LeadsNearby DNI works by setting a cookie based on URL Parameters or document.referrer and matching that to a predefined list of sources or any custom source.  The cookie is currently set for 30 days before it can be reset to a new source.
 
 * Install the Plugin in Wordpress
 
