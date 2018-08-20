@@ -1,13 +1,13 @@
-window.addEventListener('load', function () {
-    var dniCookie = "";
-    var cookieIsSet = "";
+window.addEventListener('load', function() {
+    var dniCookie = '';
+    var cookieIsSet = '';
     //console.log(dniData);
 
     // Check to see if the Cookie is already set.
     if (document.cookie) {
         var dCookies = document.cookie;
         dCookies = dCookies.split('; ');
-        dCookies.forEach(function (cookies) {
+        dCookies.forEach(function(cookies) {
             c = cookies.split('=');
 
             if (c[0] == 'dniCookie') {
@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
     if (Object.keys(dniUrlAttributes).length > 0 && cookieIsSet !== true) {
         var dniParamEntries = Object.entries(dniUrlAttributes);
 
-        dniParamEntries.forEach(function (attributes) {
+        dniParamEntries.forEach(function(attributes) {
             if (attributes[1] == 'Marketing Automation' || attributes[1] == 'Monthly Newsletter') {
                 setCookie('dniCookie', 'ma', 30);
             }
@@ -29,13 +29,14 @@ window.addEventListener('load', function () {
                 setCookie('dniCookie', 'ppc', 30);
             }
         });
-
     } else if (cookieIsSet !== true) {
         // Match based on Document Referrer if no URL Params and Cookie is not already set
 
-        var dniReferrer = document.referrer;
+        //         var dniReferrer = document.referrer;
+        var dniReferrer = document.referrer != '' ? document.referrer.match(/:\/\/(.[^/]+)/)[1] : '';
+        // 		console.log(dniReferrer);
         switch (document.referrer) {
-            case "":
+            case '':
                 setCookie('dniCookie', 'direct', 30);
                 break;
             default:
@@ -49,7 +50,7 @@ window.addEventListener('load', function () {
         var dCookies = document.cookie;
         dCookies = dCookies.split('; ');
 
-        dCookies.forEach(function (cookies) {
+        dCookies.forEach(function(cookies) {
             c = cookies.split('=');
 
             if (c[0] == 'dniCookie') {
@@ -58,15 +59,22 @@ window.addEventListener('load', function () {
         });
     }
 
-    // Match the Cookie to the Data and switch the enumber
+    // Match the Cookie to the Data and switch the number
     if (Object.keys(dniData).length > 0) {
-        Object.entries(dniData).forEach(function (data) {
+        Object.entries(dniData).forEach(function(data) {
             if (dniCookie === data[1]['source-select']) {
                 numberMatch = data[1]['phone-number'];
-                document.querySelector('.phone-num').outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
-            } else if (data[1]['source-select'] === 'custom' && data[1]['custom-referrer'].replace(/\/?(\?|#|$)/, '/$1') === dniCookie) {
+                document.querySelector(
+                    '.phone-num'
+                ).outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
+            } else if (
+                data[1]['source-select'] === 'custom' &&
+                data[1]['custom-referrer'].replace(/\/?(\?|#|$)/, '/$1') === dniCookie
+            ) {
                 numberMatch = data[1]['phone-number'];
-                document.querySelector('.phone-num').outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
+                document.querySelector(
+                    '.phone-num'
+                ).outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
             }
         });
     }
@@ -74,9 +82,8 @@ window.addEventListener('load', function () {
     // Cookie Set Function
     function setCookie(cname, cvalue, exdays) {
         var d = new Date();
-        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        var expires = "expires=" + d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+        var expires = 'expires=' + d.toUTCString();
+        document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
     }
-
 });
