@@ -94,13 +94,13 @@ class LnbDni {
 				</div>
 				<div class="lnbSetting setting-right">
 					<select form="dni-form" class="lnbSetting__select lnbSetting__select--text" name="option[<?php echo $i ?>][source-select]" value="">
-						<option value="https://www.google.com/" <?php if ($setting['source-select'] == "https://www.google.com/") echo 'selected'; ?>><i class="fab fa-google"></i>Google Organic</option>
-						<option value="https://www.bing.com/" <?php if ($setting['source-select'] == "https://www.bing.com/") echo 'selected'; ?>>Bing Organic</option>
+						<option value="www.google.com" <?php if ($setting['source-select'] == "www.google.com") echo 'selected'; ?>><i class="fab fa-google"></i>Google Organic</option>
+						<option value="www.bing.com" <?php if ($setting['source-select'] == "www.bing.com") echo 'selected'; ?>>Bing Organic</option>
 						<option value="direct" <?php if ($setting['source-select'] == "direct") echo 'selected'; ?>><i class="fas fa-keyboard"></i>Direct/Other</option>
 						<option value="ppc" <?php if ($setting['source-select'] == "ppc") echo 'selected'; ?>><i class="fab fa-google"></i>Google Adwords</option>
 						<option value="ma" <?php if ($setting['source-select'] == "ma") echo 'selected'; ?>><i class="fas fa-envelope"></i>Marketing Automation</option>
-						<option value="https://www.facebook.com/"<?php if ($setting['source-select'] == "https://www.facebook.com/") echo 'selected'; ?>><i class="fab fa-facebook"></i>Facebook</option>
-						<option value="https://www.yelp.com/"<?php if ($setting['source-select'] == "https://www.yelp.com/") echo 'selected'; ?>><i class="fab fa-yelp"></i>Yelp</option>
+						<option value="www.facebook.com"<?php if ($setting['source-select'] == "www.facebook.com") echo 'selected'; ?>><i class="fab fa-facebook"></i>Facebook</option>
+						<option value="www.yelp.com"<?php if ($setting['source-select'] == "www.yelp.com") echo 'selected'; ?>><i class="fab fa-yelp"></i>Yelp</option>
                         <option class="dni-custom-select" value="custom"<?php if ($setting['source-select'] == "custom") echo 'selected'; ?>>Custom</option>
                     </select>
                 </div>
