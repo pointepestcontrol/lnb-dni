@@ -3,7 +3,7 @@
 Plugin Name: LeadsNearby DNI
 Plugin URI: http://leadsnearby.com
 Description: Provides Dynamic Phone Number Functionality for Various Call Tracking Solutions
-Version: 1.0.0
+Version: 1.1.0
 Author: LeadsNearby
 Author URI: http://leadsnearby.com
 License: GPLv2
@@ -20,6 +20,16 @@ class LnbDni {
         add_action('admin_menu', array($this, 'add_menu_entry'));
         add_action('admin_enqueue_scripts', array($this, 'register_backend_scripts'));
         add_action('wp_enqueue_scripts', array($this, 'register_frontend_scripts'));
+
+        if (is_admin()) {
+            $this->admin_init();
+        }
+    }
+
+    // GitHub Updater
+    public function admin_init() {
+        require_once plugin_dir_path(__FILE__) . 'updater.php';
+        new GitHubPluginUpdater(__FILE__, 'LeadsNearby', 'lnb-white-label');
     }
 
     public function add_menu_entry() {
