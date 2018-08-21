@@ -33,13 +33,13 @@ window.addEventListener('load', function() {
 			</div>
 			<div class="lnbSetting setting-right">
 				<select form="dni-form" class="lnbSetting__select lnbSetting__select--text" name="option[${dniFormIndex}][source-select]">
-					<option value="https://www.google.com">Google Organic</option>
-					<option value="https://www.bing.com/">Bing Organic</option>
+					<option value="www.google.com">Google Organic</option>
+					<option value="www.bing.com/">Bing Organic</option>
 					<option value="direct">Direct</option>
 					<option value="ppc">PPC</option>
 					<option value="ma">Marketing Automation</option>
-					<option value="https://www.facebook.com">Facebook</option>
-					<option value="https://www.yelp.com">Yelp</option>
+					<option value="www.facebook.com">Facebook</option>
+					<option value="www.yelp.com">Yelp</option>
                             <option class="dni-custom-select" value="custom">Custom</option>
 				<select>
 			</div>`;
