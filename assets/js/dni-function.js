@@ -64,17 +64,19 @@ window.addEventListener('load', function() {
         Object.entries(dniData).forEach(function(data) {
             if (dniCookie === data[1]['source-select']) {
                 numberMatch = data[1]['phone-number'];
-                document.querySelector(
-                    '.phone-num'
-                ).outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
+                phoneNum = document.querySelectorAll('.phone-num');
+				Object.entries(phoneNum).forEach(function(numbers) {
+					numbers[1].outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
+				}); 
             } else if (
                 data[1]['source-select'] === 'custom' &&
                 data[1]['custom-referrer'].replace(/\/?(\?|#|$)/, '/$1') === dniCookie
             ) {
                 numberMatch = data[1]['phone-number'];
-                document.querySelector(
-                    '.phone-num'
-                ).outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
+                phoneNum = document.querySelectorAll('.phone-num');
+				Object.entries(phoneNum).forEach(function(numbers) {
+					numbers[1].outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
+				});
             }
         });
     }
