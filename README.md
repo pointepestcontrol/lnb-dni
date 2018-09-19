@@ -1,13 +1,13 @@
 # LeadsNearby DNI
 
-**Version:** 1.1.0<br/>
+**Version:** 1.1.1<br/>
 **Tested up to:** 4.9.8
 
 Provides Dynamic Insertion functionality on a Wordpress website, using call tracking numbers, to track calls based on the web source of the user/customer.
 
 ***Version 1.0.0 - Initial Release***
-
 ***Version 1.1.0 - Fixes and Tweaks***
+***Version 1.1.1 - Fixed Referrer Functionality and Updated Number Switching***
 
 
 ## How to Use
