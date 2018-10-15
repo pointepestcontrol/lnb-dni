@@ -68,7 +68,7 @@ window.addEventListener('load', function() {
                 dniDataClass = data[1]['class'];
                 dniClass = document.querySelectorAll('.' + dniDataClass);
 				Object.entries(dniClass).forEach(function(numbers) {
-					numbers[1].outerHTML = `<a class="${dniClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
+					numbers[1].outerHTML = `<a class="${dniDataClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
 				}); 
             } else if (
                 data[1]['source-select'] === 'custom' &&
@@ -77,7 +77,7 @@ window.addEventListener('load', function() {
                 numberMatch = data[1]['phone-number'];
                 dniClass = document.querySelectorAll(data[1]['class']);
 				Object.entries(dniClass).forEach(function(numbers) {
-					numbers[1].outerHTML = `<a class="${dniClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
+					numbers[1].outerHTML = `<a class="${dniDataClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
 				});
             }
         });

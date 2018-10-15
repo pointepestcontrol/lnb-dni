@@ -41,7 +41,7 @@ window.addEventListener('load', function() {
 					<option value="www.google.com">Google Organic</option>
 					<option value="www.bing.com/">Bing Organic</option>
 					<option value="direct">Direct</option>
-					<option value="ppc">PPC</option>
+					<option value="ppc">Google Adwords</option>
 					<option value="ma">Marketing Automation</option>
 					<option value="www.facebook.com">Facebook</option>
 					<option value="www.yelp.com">Yelp</option>
