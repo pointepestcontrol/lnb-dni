@@ -26,6 +26,11 @@ window.addEventListener('load', function() {
         rowNode.className = 'rowLnbSetting';
         rowNode.setAttribute('data-index', dniFormIndex);
         rowNode.innerHTML = `<div class="willbeX"></div>
+            <div class="lnbSetting setting-class">
+                <input required="" class="lnbSetting__field lnbSetting__field--text" name="option[${dniFormIndex}][class]" type="text">
+                <label class="lnbSetting__label">Class</label>
+                <span class="lnbSetting__highlight"></span>
+            </div>
             <div class="lnbSetting setting-left">
 				<input required="" class="lnbSetting__field lnbSetting__field--text" name="option[${dniFormIndex}][phone-number]" type="tel">
 				<label class="lnbSetting__label">Tracking Number</label>

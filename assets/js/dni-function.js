@@ -20,7 +20,7 @@ window.addEventListener('load', function() {
     // Match based on URL Params First and if Cookie is not already set
     if (Object.keys(dniUrlAttributes).length > 0 && cookieIsSet !== true) {
         var dniParamEntries = Object.entries(dniUrlAttributes);
-
+        
         dniParamEntries.forEach(function(attributes) {
             if (attributes[1] == 'Marketing Automation' || attributes[1] == 'Monthly Newsletter') {
                 setCookie('dniCookie', 'ma', 30);
@@ -60,22 +60,24 @@ window.addEventListener('load', function() {
     }
 
     // Match the Cookie to the Data and switch the number
+  
     if (Object.keys(dniData).length > 0) {
         Object.entries(dniData).forEach(function(data) {
             if (dniCookie === data[1]['source-select']) {
                 numberMatch = data[1]['phone-number'];
-                phoneNum = document.querySelectorAll('.phone-num');
-				Object.entries(phoneNum).forEach(function(numbers) {
-					numbers[1].outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
+                dniDataClass = data[1]['class'];
+                dniClass = document.querySelectorAll('.' + dniDataClass);
+				Object.entries(dniClass).forEach(function(numbers) {
+					numbers[1].outerHTML = `<a class="${dniClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
 				}); 
             } else if (
                 data[1]['source-select'] === 'custom' &&
                 data[1]['custom-referrer'].replace(/\/?(\?|#|$)/, '/$1') === dniCookie
             ) {
                 numberMatch = data[1]['phone-number'];
-                phoneNum = document.querySelectorAll('.phone-num');
-				Object.entries(phoneNum).forEach(function(numbers) {
-					numbers[1].outerHTML = `<a class="phone-num" href="tel:${numberMatch}">${numberMatch}</a>`;
+                dniClass = document.querySelectorAll(data[1]['class']);
+				Object.entries(dniClass).forEach(function(numbers) {
+					numbers[1].outerHTML = `<a class="${dniClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
 				});
             }
         });
