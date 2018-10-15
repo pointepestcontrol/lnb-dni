@@ -18,21 +18,16 @@ window.addEventListener('load', function() {
 
     // Set the Cookie based on the Source
     // Match based on URL Params First and if Cookie is not already set
-    if (Object.keys(dniUrlAttributes).length > 0 && cookieIsSet !== true) {
-        var dniParamEntries = Object.entries(dniUrlAttributes);
-        
-        dniParamEntries.forEach(function(attributes) {
-            if (attributes[1] == 'Marketing Automation' || attributes[1] == 'Monthly Newsletter') {
+    if (window.location.href.indexOf('?') > 0 && cookieIsSet !== true) {
+            if (window.location.href.indexOf('Marketing%20Automation') > 0 || window.location.href.indexOf('Monthly%20Newsletter') > 0) {
                 setCookie('dniCookie', 'ma', 30);
             }
-            if (attributes[0] == 'gclid') {
+            if (window.location.href.indexOf('gclid') > 0) {
                 setCookie('dniCookie', 'ppc', 30);
             }
-        });
+
     } else if (cookieIsSet !== true) {
         // Match based on Document Referrer if no URL Params and Cookie is not already set
-
-        //         var dniReferrer = document.referrer;
         var dniReferrer = document.referrer != '' ? document.referrer.match(/:\/\/(.[^/]+)/)[1] : '';
         // 		console.log(dniReferrer);
         switch (document.referrer) {
