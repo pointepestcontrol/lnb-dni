@@ -29,7 +29,7 @@ class LnbDni {
     // GitHub Updater
     public function admin_init() {
         //require_once plugin_dir_path(__FILE__) . 'updater.php';
-        new GitHubPluginUpdater(__FILE__, 'LeadsNearby', 'lnb-white-label');
+        // new GitHubPluginUpdater(__FILE__, 'LeadsNearby', 'lnb-white-label');
     }
 
     public function add_menu_entry() {
@@ -41,7 +41,7 @@ class LnbDni {
     public function register_backend_scripts() {
         if (current_user_can('administrator')) {
             wp_enqueue_style('dni-settings-styles', plugin_dir_url(__FILE__) . 'assets/css/settings-style.css');
-            wp_enqueue_script('dni-settings-js', plugin_dir_url(__FILE__) . 'assets/js/dni-settings.js', '', null, true);
+            wp_register_script('dni-settings-js', plugin_dir_url(__FILE__) . 'assets/js/dni-settings.js', '', null, true);
         }
     }
 
@@ -71,6 +71,8 @@ class LnbDni {
         }
 
         $lnbDniSettings = get_option('lnb-dni-settings');
+
+        wp_enqueue_style('dni-settings-js');
 
         ?>
 
@@ -115,22 +117,21 @@ class LnbDni {
                 <div class="lnbSetting setting-right">
                     <select form="dni-form" class="lnbSetting__select lnbSetting__select--text" name="option[<?php echo $i ?>][source-select]"
                         value="">
-                        <option value="www.google.com" <?php if ($setting['source-select']=="www.google.com" ) {echo
-                            'selected' ;}?>><i class="fab fa-google"></i>Google Organic</option>
-                        <option value="www.bing.com" <?php if ($setting['source-select']=="www.bing.com" ) {echo
-                            'selected' ;}?>>Bing Organic</option>
-                        <option value="direct" <?php if ($setting['source-select']=="direct" ) {echo 'selected' ;}?>><i
+                        <option value="www.google.com" <?php if ($setting['source-select'] == "www.google.com") {echo
+                'selected';}?>><i class="fab fa-google"></i>Google Organic</option>
+                        <option value="www.bing.com" <?php if ($setting['source-select'] == "www.bing.com") {echo
+                'selected';}?>>Bing Organic</option>
+                        <option value="direct" <?php if ($setting['source-select'] == "direct") {echo 'selected';}?>><i
                                 class="fas fa-keyboard"></i>Direct/Other</option>
-                        <option value="ppc" <?php if ($setting['source-select']=="ppc" ) {echo 'selected' ;}?>><i class="fab fa-google"></i>Google
+                        <option value="ppc" <?php if ($setting['source-select'] == "ppc") {echo 'selected';}?>><i class="fab fa-google"></i>Google
                             Adwords</option>
-                        <option value="ma" <?php if ($setting['source-select']=="ma" ) {echo 'selected' ;}?>><i class="fas fa-envelope"></i>Marketing
+                        <option value="ma" <?php if ($setting['source-select'] == "ma") {echo 'selected';}?>><i class="fas fa-envelope"></i>Marketing
                             Automation</option>
-                        <option value="www.facebook.com" <?php if ($setting['source-select']=="www.facebook.com" )
-                            {echo 'selected' ;}?>><i class="fab fa-facebook"></i>Facebook</option>
-                        <option value="www.yelp.com" <?php if ($setting['source-select']=="www.yelp.com" ) {echo
-                            'selected' ;}?>><i class="fab fa-yelp"></i>Yelp</option>
-                        <option class="dni-custom-select" value="custom" <?php if ($setting['source-select']=="custom"
-                            ) {echo 'selected' ;}?>>Custom</option>
+                        <option value="www.facebook.com" <?php if ($setting['source-select'] == "www.facebook.com") {echo 'selected';}?>><i class="fab fa-facebook"></i>Facebook</option>
+                        <option value="www.yelp.com" <?php if ($setting['source-select'] == "www.yelp.com") {echo
+                'selected';}?>><i class="fab fa-yelp"></i>Yelp</option>
+                        <option class="dni-custom-select" value="custom" <?php if ($setting['source-select'] == "custom"
+        ) {echo 'selected';}?>>Custom</option>
                     </select>
                 </div>
 
