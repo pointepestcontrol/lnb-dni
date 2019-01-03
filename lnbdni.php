@@ -20,16 +20,6 @@ class LnbDni {
         add_action('admin_menu', array($this, 'add_menu_entry'));
         add_action('admin_enqueue_scripts', array($this, 'register_backend_scripts'));
         add_action('wp_enqueue_scripts', array($this, 'register_frontend_scripts'));
-
-        if (is_admin()) {
-            $this->admin_init();
-        }
-    }
-
-    // GitHub Updater
-    public function admin_init() {
-        //require_once plugin_dir_path(__FILE__) . 'updater.php';
-        // new GitHubPluginUpdater(__FILE__, 'LeadsNearby', 'lnb-white-label');
     }
 
     public function add_menu_entry() {
@@ -163,3 +153,9 @@ class LnbDni {
 }
 
 $plugin = new LnbDni();
+
+add_action('admin_init', function () {
+    if (class_exists('\lnb\core\GitHubPluginUpdater')) {
+        new \lnb\core\GitHubPluginUpdater(__FILE__, 'lnb-dni');
+    }
+}, 99);
