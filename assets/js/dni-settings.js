@@ -45,7 +45,7 @@ window.addEventListener('load', function() {
 					<option value="ma">Marketing Automation</option>
 					<option value="www.facebook.com">Facebook</option>
 					<option value="www.yelp.com">Yelp</option>
-                            <option class="dni-custom-select" value="custom">Custom</option>
+                    <option class="dni-custom-select" value="custom">Custom</option>
 				<select>
 			</div>`;
 
@@ -83,7 +83,7 @@ window.addEventListener('load', function() {
         var dniFormIndex = dniSelect.parentNode.parentNode.getAttribute('data-index');
         dniCustomInputField.innerHTML = `<div class="lnbSetting setting-custom-row">
                 <input required="" class="lnbSetting__field lnbSetting__field--text custom-referrer-field" name="option[${dniFormIndex}][custom-referrer]" type="tel">
-                    <label class="lnbSetting__label">Custom Referrer</label>
+                    <label class="lnbSetting__label">Custom Referrer / Parameter</label>
                     <span class="lnbSetting__highlight"></span>
                     </div>`;
         dniSelect.parentNode.parentNode.append(dniCustomInputField);

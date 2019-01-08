@@ -3,7 +3,7 @@
 Plugin Name: LeadsNearby DNI
 Plugin URI: http://leadsnearby.com
 Description: Provides Dynamic Phone Number Functionality for Various Call Tracking Solutions
-Version: 1.2.3
+Version: 1.3.0
 Author: LeadsNearby
 Author URI: http://leadsnearby.com
 License: GPLv2
@@ -123,6 +123,8 @@ class LnbDni {
                             'selected' ;}?>><i class="fab fa-yelp"></i>Yelp</option>
                         <option class="dni-custom-select" value="custom" <?php if ($setting['source-select']=="custom"
                             ) {echo 'selected' ;}?>>Custom</option>
+                        <option class="dni-custom-select" value="custom" <?php if ($setting['source-select']=="custom"
+                            ) {echo 'selected' ;}?>>Custom</option>
                     </select>
                 </div>
 
@@ -130,7 +132,7 @@ class LnbDni {
                 <div class="lnbSetting setting-custom-row">
                     <input required="" class="lnbSetting__field lnbSetting__field--text" name="option[<?php echo $i ?>][custom-referrer]"
                         type="tel" maxlength="30" value="<?php echo $setting['custom-referrer'] ?>">
-                    <label class="lnbSetting__label">Custom Referrer</label>
+                    <label class="lnbSetting__label">Custom Referrer / Parameter</label>
                     <span class="lnbSetting__highlight"></span>
                 </div>
                 <?php }?>

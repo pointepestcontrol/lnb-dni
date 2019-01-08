@@ -1,7 +1,12 @@
+/**
+ * JS to execute the Dynamic Number Switching
+ * Sets a Cookie based on the document referrer or a URL parameter.  
+ * Matches the Cookie Against Localized DB Data and Switches the number if a match
+ */
+
 window.addEventListener('load', function() {
     var dniCookie = '';
     var cookieIsSet = '';
-    //console.log(dniData);
 
     // Check to see if the Cookie is already set.
     if (document.cookie) {
@@ -19,6 +24,7 @@ window.addEventListener('load', function() {
     // Set the Cookie based on the Source
     // Match based on URL Params First and if Cookie is not already set
     if (window.location.href.indexOf('?') > 0 && cookieIsSet !== true) {
+        
             if (window.location.href.indexOf('Marketing%20Automation') > 0 || window.location.href.indexOf('Monthly%20Newsletter') > 0) {
                 setCookie('dniCookie', 'ma', 30);
             }
@@ -26,10 +32,16 @@ window.addEventListener('load', function() {
                 setCookie('dniCookie', 'ppc', 30);
             }
 
+            // Custom Referrer Field now checks for Custom URL Parameters also
+            Object.entries(dniData).forEach(function(data) {
+                if (window.location.href.indexOf(data[1]['custom-referrer']) > 0) {
+                    setCookie('dniCookie', data[1]['custom-referrer'], 30);
+                }
+            });
+
     } else if (cookieIsSet !== true) {
         // Match based on Document Referrer if no URL Params and Cookie is not already set
         var dniReferrer = document.referrer != '' ? document.referrer.match(/:\/\/(.[^/]+)/)[1] : '';
-        // 		console.log(dniReferrer);
         switch (document.referrer) {
             case '':
                 setCookie('dniCookie', 'direct', 30);
@@ -55,24 +67,37 @@ window.addEventListener('load', function() {
     }
 
     // Match the Cookie to the Data and switch the number
-  
     if (Object.keys(dniData).length > 0) {
         Object.entries(dniData).forEach(function(data) {
             if (dniCookie === data[1]['source-select']) {
-                numberMatch = data[1]['phone-number'];
-                dniDataClass = data[1]['class'];
-                dniClass = document.querySelectorAll('.' + dniDataClass);
+                var numberMatch = data[1]['phone-number'];
+                var dniDataClass = data[1]['class'];
+                var dniClass = document.querySelectorAll('.' + dniDataClass);
 				Object.entries(dniClass).forEach(function(numbers) {
 					numbers[1].outerHTML = `<a class="${dniDataClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
-				}); 
+                }); 
+                
             } else if (
                 data[1]['source-select'] === 'custom' &&
                 data[1]['custom-referrer'].replace(/\/?(\?|#|$)/, '/$1') === dniCookie
-            ) {
-                numberMatch = data[1]['phone-number'];
-                dniClass = document.querySelectorAll(data[1]['class']);
+            )  {
+                var numberMatch = data[1]['phone-number'];
+                var dniDataClass = data[1]['class'];
+                var dniClass = document.querySelectorAll('.' + data[1]['class']);
 				Object.entries(dniClass).forEach(function(numbers) {
 					numbers[1].outerHTML = `<a class="${dniDataClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
+				});
+            }
+
+            else if (
+                data[1]['source-select'] === 'custom' &&
+                data[1]['custom-referrer'] === dniCookie
+            ) {
+                var numberMatch = data[1]['phone-number'];
+                var dniClass = document.querySelectorAll('.' + data[1]['class']);
+                var dniDataClass = data[1]['class'];
+				Object.entries(dniClass).forEach(function(numbers) {
+                    numbers[1].outerHTML = `<a class="${dniDataClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
 				});
             }
         });
