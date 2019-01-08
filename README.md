@@ -9,6 +9,8 @@ Provides Dynamic Insertion functionality on a Wordpress website, using call trac
 ***Version 1.1.0 - Fixes and Tweaks***
 ***Version 1.1.1 - Fixed Referrer Functionality and Updated Number Switching***
 ***Version 1.2.0 - Added Functionality for Multiple Numbers by Class Name***
+***Version 1.3.0 - Added a feature to switch the number based on custom URL parameters.  
+                   The custom referrer field now also accepts URL parameters
 
 
 ## How to Use
@@ -26,7 +28,7 @@ LeadsNearby DNI works by setting a cookie based on URL Parameters or document.re
 
 * Select a common source from the dropdown or click custom for a custom referrer
   * A third field will be appear under the Custom Source Input column once custom is selected from the list.
-  * The Custom Source input much exactly match the document.referrer of the source domain that you want to track(ex. Angies List will be 'https://www.angieslist.com')
+  * The Custom Source input much exactly match the document.referrer of the source domain that you want to track.  The Custom Source field will also check against URL parameters.
   
  * Click Save Options and be done
 
