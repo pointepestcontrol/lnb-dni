@@ -4,6 +4,7 @@
  * Matches the Cookie Against Localized DB Data and Switches the number if a match
  */
 
+
 window.addEventListener('load', function() {
     var dniCookie = '';
     var cookieIsSet = '';
@@ -73,9 +74,16 @@ window.addEventListener('load', function() {
                 var numberMatch = data[1]['phone-number'];
                 var dniDataClass = data[1]['class'];
                 var dniClass = document.querySelectorAll('.' + dniDataClass);
-				Object.entries(dniClass).forEach(function(numbers) {
-					numbers[1].outerHTML = `<a class="${dniDataClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
-                }); 
+
+                // Send Event
+                sendAnalytics();
+                
+                // Do the Switching
+				Object.entries(dniClass).forEach(function([key, numbers]) {
+                    var originClass = numbers.className;
+                    numbers.innerHTML = numbers.innerHTML.replace(/[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, numberMatch);
+                    numbers.href = `tel:${numberMatch}`;
+				});
                 
             } else if (
                 data[1]['source-select'] === 'custom' &&
@@ -84,8 +92,15 @@ window.addEventListener('load', function() {
                 var numberMatch = data[1]['phone-number'];
                 var dniDataClass = data[1]['class'];
                 var dniClass = document.querySelectorAll('.' + data[1]['class']);
-				Object.entries(dniClass).forEach(function(numbers) {
-					numbers[1].outerHTML = `<a class="${dniDataClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
+
+                // Send Event
+                sendAnalytics();
+                
+                // Do the Switching
+				Object.entries(dniClass).forEach(function([key, numbers]) {
+                    var originClass = numbers.className;
+                    numbers.innerHTML = numbers.innerHTML.replace(/[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, numberMatch);
+                    numbers.href = `tel:${numberMatch}`;
 				});
             }
 
@@ -96,8 +111,15 @@ window.addEventListener('load', function() {
                 var numberMatch = data[1]['phone-number'];
                 var dniClass = document.querySelectorAll('.' + data[1]['class']);
                 var dniDataClass = data[1]['class'];
-				Object.entries(dniClass).forEach(function(numbers) {
-                    numbers[1].outerHTML = `<a class="${dniDataClass}" href="tel:${numberMatch}">${numberMatch}</a>`;
+                
+                // Send Event
+                sendAnalytics();
+
+                // Do the Changing
+				Object.entries(dniClass).forEach(function([key, numbers]) {
+                    var originClass = numbers.className;
+                    numbers.innerHTML = numbers.innerHTML.replace(/[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, numberMatch);
+                    numbers.href = `tel:${numberMatch}`;
 				});
             }
         });
@@ -110,4 +132,19 @@ window.addEventListener('load', function() {
         var expires = 'expires=' + d.toUTCString();
         document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
     }
+
+    // Send Analytics Events
+
+    function sendAnalytics() {
+        // Send GA Event
+        if (typeof ga === 'function') {
+            ga('send', 'event', 'LNB-DNI', 'change', 'Number Change Triggered');
+        } else if (typeof gtag === 'function') {
+            gtag('event', 'change', {
+                'event_category': 'LNB-DNI',
+                'event_label': 'Number Change Triggered'
+              });
+        }
+    }
+
 });

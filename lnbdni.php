@@ -3,7 +3,7 @@
 Plugin Name: LeadsNearby DNI
 Plugin URI: http://leadsnearby.com
 Description: Provides Dynamic Phone Number Functionality for Various Call Tracking Solutions
-Version: 1.3.0
+Version: 1.4.0
 Author: LeadsNearby
 Author URI: http://leadsnearby.com
 License: GPLv2
@@ -40,7 +40,6 @@ class LnbDni {
         wp_register_script('dni-data', '');
         wp_localize_script('dni-data', 'dniData', $dniData);
         wp_enqueue_script('dni-data');
-
         wp_enqueue_script('dni-function-js', plugin_dir_url(__FILE__) . 'assets/js/dni-function.js', '', null, true);
     }
 
@@ -95,7 +94,7 @@ class LnbDni {
                 <div style="cursor: pointer;" class="dni-delete"><img style="width: 70%;" src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/Close_Icon_Circle-512.png'; ?>"></div>
                 <div class="lnbSetting setting-class">
                     <input required="" class="lnbSetting__field lnbSetting__field--text" name="option[<?php echo $i ?>][class]"
-                        type="tel" maxlength="14" value="<?php echo $setting['class'] ?>">
+                        type="tel" maxlength="30" value="<?php echo $setting['class'] ?>">
                     <label class="lnbSetting__label">Class</label>
                     <span class="lnbSetting__highlight"></span>
                 </div>
