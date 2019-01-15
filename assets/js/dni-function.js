@@ -1,9 +1,9 @@
+
 /**
  * JS to execute the Dynamic Number Switching
  * Sets a Cookie based on the document referrer or a URL parameter.  
  * Matches the Cookie Against Localized DB Data and Switches the number if a match
  */
-
 
 window.addEventListener('load', function() {
     var dniCookie = '';
@@ -133,16 +133,15 @@ window.addEventListener('load', function() {
         document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
     }
 
-    // Send Analytics Events
-
+    // Function to Send Analytics Events
     function sendAnalytics() {
         // Send GA Event
         if (typeof ga === 'function') {
-            ga('send', 'event', 'LNB-DNI', 'change', 'Number Change Triggered');
+            ga('send', 'event', 'LNB-DNI', 'change', 'DNI Number Change Triggered');
         } else if (typeof gtag === 'function') {
             gtag('event', 'change', {
                 'event_category': 'LNB-DNI',
-                'event_label': 'Number Change Triggered'
+                'event_label': 'DNI Number Change Triggered'
               });
         }
     }
