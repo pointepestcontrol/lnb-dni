@@ -137,7 +137,8 @@ window.addEventListener('load', function() {
     function sendAnalytics() {
         // Send GA Event
         if (typeof ga === 'function') {
-            ga('send', 'event', 'LNB-DNI', 'change', 'DNI Number Change Triggered');
+            var tracker = ga.getAll()[0].get('name');
+            ga(tracker+'.send', 'event', {'eventCategory': 'LNB-DNI', 'eventAction': 'change', 'eventLabel': 'DNI Number Change Triggered'});;
         } else if (typeof gtag === 'function') {
             gtag('event', 'change', {
                 'event_category': 'LNB-DNI',
