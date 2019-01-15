@@ -81,7 +81,7 @@ window.addEventListener('load', function() {
                 // Do the Switching
 				Object.entries(dniClass).forEach(function([key, numbers]) {
                     var originClass = numbers.className;
-                    numbers.innerHTML = numbers.innerHTML.replace(/[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, numberMatch);
+                    numbers.innerHTML = numbers.innerHTML.replace(/[\+]?[(]?[0-9]{3}[)]?[-\s\.\xB7]?[0-9]{3}[-\s\.\xB7]?[0-9]{4,6}$/im, numberMatch);
                     numbers.href = `tel:${numberMatch}`;
 				});
                 
@@ -99,7 +99,7 @@ window.addEventListener('load', function() {
                 // Do the Switching
 				Object.entries(dniClass).forEach(function([key, numbers]) {
                     var originClass = numbers.className;
-                    numbers.innerHTML = numbers.innerHTML.replace(/[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, numberMatch);
+                    numbers.innerHTML = numbers.innerHTML.replace(/[\+]?[(]?[0-9]{3}[)]?[-\s\.\xB7]?[0-9]{3}[-\s\.\xB7]?[0-9]{4,6}$/im, numberMatch);
                     numbers.href = `tel:${numberMatch}`;
 				});
             }
@@ -118,7 +118,7 @@ window.addEventListener('load', function() {
                 // Do the Changing
 				Object.entries(dniClass).forEach(function([key, numbers]) {
                     var originClass = numbers.className;
-                    numbers.innerHTML = numbers.innerHTML.replace(/[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, numberMatch);
+                    numbers.innerHTML = numbers.innerHTML.replace(/[\+]?[(]?[0-9]{3}[)]?[-\s\.\xB7]?[0-9]{3}[-\s\.\xB7]?[0-9]{4,6}$/im, numberMatch);
                     numbers.href = `tel:${numberMatch}`;
 				});
             }
