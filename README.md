@@ -5,14 +5,14 @@
 
 Provides Dynamic Insertion functionality on a Wordpress website, using call tracking numbers, to track calls based on the web source of the user/customer.
 
-***Version 1.0.0 - Initial Release***
-***Version 1.1.0 - Fixes and Tweaks***
-***Version 1.1.1 - Fixed Referrer Functionality and Updated Number Switching***
-***Version 1.2.0 - Added Functionality for Multiple Numbers by Class Name***
-***Version 1.3.0 - Added a feature to switch the number based on custom URL parameters.  
-                   The custom referrer field now also accepts URL parameters***
-***Version 1.4.0 - Now Supports HTML Elements inside the anchor text of phone number links
-                   Now sends GA events when the number changes
+***Version 1.0.0 - Initial Release***  
+***Version 1.1.0 - Fixes and Tweaks***  
+***Version 1.1.1 - Fixed Referrer Functionality and Updated Number Switching***  
+***Version 1.2.0 - Added Functionality for Multiple Numbers by Class Name***  
+***Version 1.3.0 - Added a feature to switch the number based on custom URL parameters.    
+                   The custom referrer field now also accepts URL parameters***  
+***Version 1.4.0 - Now Supports HTML Elements inside the anchor text of phone number links  
+                   Now sends GA events when the number changes  
                    
 
 
