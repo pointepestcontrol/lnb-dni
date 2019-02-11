@@ -12,7 +12,7 @@ Provides Dynamic Insertion functionality on a Wordpress website, using call trac
 ***Version 1.3.0 - Added a feature to switch the number based on custom URL parameters.    
                    The custom referrer field now also accepts URL parameters***  
 ***Version 1.4.0 - Now Supports HTML Elements inside the anchor text of phone number links  
-                   Now sends GA events when the number changes  
+                   Now sends GA events when the number changes  ***
                    
 
 
