@@ -1,6 +1,6 @@
 # LeadsNearby DNI
 
-**Version:** 1.4.3<br/>
+**Version:** 1.4.4<br/>
 **Tested up to:** 4.9.8
 
 Provides Dynamic Insertion functionality on a Wordpress website, using call tracking numbers, to track calls based on the web source of the user/customer.
@@ -13,6 +13,7 @@ Provides Dynamic Insertion functionality on a Wordpress website, using call trac
                    The custom referrer field now also accepts URL parameters***  
 ***Version 1.4.0 - Now Supports HTML Elements inside the anchor text of phone number links  
                    Now sends GA events when the number changes***  
+***Version 1.4.4 - Added a feature to switch the number based on custom URL path.***  
                    
 
 

@@ -24,23 +24,23 @@ window.addEventListener('load', function() {
 
     // Set the Cookie based on the Source
     // Match based on URL Params First and if Cookie is not already set
-    if (window.location.href.indexOf('?') > 0 && cookieIsSet !== true) {
+    if ((window.location.href.indexOf('?') > 0  || window.location.pathname.length > 1 ) && cookieIsSet !== true) {
         
-            if (window.location.href.indexOf('Marketing%20Automation') > 0 || window.location.href.indexOf('Monthly%20Newsletter') > 0) {
-                setCookie('dniCookie', 'ma', 30);
-            }
-            if (window.location.href.indexOf('gclid') > 0) {
-                setCookie('dniCookie', 'ppc', 30);
-            }
+        if (window.location.href.indexOf('Marketing%20Automation') > 0 || window.location.href.indexOf('Monthly%20Newsletter') > 0) {
+            setCookie('dniCookie', 'ma', 30);
+        }
+        if (window.location.href.indexOf('gclid') > 0) {
+            setCookie('dniCookie', 'ppc', 30);
+        }
 
-            // Custom Referrer Field now checks for Custom URL Parameters also
-            Object.entries(dniData).forEach(function(data) {
-                if (window.location.href.indexOf(data[1]['custom-referrer']) > 0) {
-                    setCookie('dniCookie', data[1]['custom-referrer'], 30);
-                }
-            });
-
-    } else if (cookieIsSet !== true) {
+        // Custom Referrer Field now checks for Custom URL Parameters also
+        Object.entries(dniData).forEach(function(data) {
+            if (window.location.href.indexOf(data[1]['custom-referrer']) > 0) {
+                setCookie('dniCookie', data[1]['custom-referrer'], 30);
+            }
+        });
+    } 
+    else if (cookieIsSet !== true) {
         // Match based on Document Referrer if no URL Params and Cookie is not already set
         var dniReferrer = document.referrer != '' ? document.referrer.match(/:\/\/(.[^/]+)/)[1] : '';
         switch (document.referrer) {

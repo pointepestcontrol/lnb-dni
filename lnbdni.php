@@ -3,7 +3,7 @@
 Plugin Name: LeadsNearby DNI
 Plugin URI: http://leadsnearby.com
 Description: Provides Dynamic Phone Number Functionality for Various Call Tracking Solutions
-Version: 1.4.3
+Version: 1.4.4
 Author: LeadsNearby
 Author URI: http://leadsnearby.com
 License: GPLv2
